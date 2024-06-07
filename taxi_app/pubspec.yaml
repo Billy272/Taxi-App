@@ -38,6 +38,7 @@ dependencies:
   get: ^4.6.5
   flutter_svg: ^2.0.10+1
   google_fonts: ^6.2.1
+  font_awesome_flutter: ^9.2.0
 
 dev_dependencies:
   flutter_test:

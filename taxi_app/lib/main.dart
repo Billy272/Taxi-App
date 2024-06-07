@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
+import 'home_screen.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
-  runApp(const TaxiApp());
+  runApp(const MyApp());
 }
 
-class TaxiApp extends StatelessWidget {
-  const TaxiApp({super.key});
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,100 +16,64 @@ class TaxiApp extends StatelessWidget {
       title: 'Taxi App',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const MyHomePage(),
-      routes: {
-        '/login': (context) => const LogInScreen(),
-        '/home': (context) => const HomePage(),
-      },
+      home: const IntroScreen(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key});
+class IntroScreen extends StatelessWidget {
+  const IntroScreen({super.key});
 
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SizedBox(
-        width: Get.width,
-        height: Get.height,
+      body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const IntroWidget(),
-            ElevatedButton(
+            Container(
+              height: 100,
+              width: 100,
+              decoration: BoxDecoration(
+                color: const Color.fromARGB(255, 0, 0, 50),
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: const Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            FaIcon(
+              FontAwesomeIcons.car,
+              color: Colors.white,
+              size: 50,
+            ),
+            SizedBox(height: 10),
+            Text(
+              'Taxi',
+              style: TextStyle(
+                color: Colors.blue,
+                fontSize: 16,
+              ),
+            ),
+          ],
+        ),
+            ),
+            const SizedBox(height: 50),
+            FloatingActionButton.extended(
               onPressed: () {
-                Get.toNamed('/login');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const HomeScreen()),
+                );
               },
-              child: const Text('Log In'),
+              icon: const Icon(Icons.login, color: Colors.white),
+              backgroundColor: const Color.fromARGB(255, 0, 0, 50),
+              label: const Text('Log In', style: TextStyle(color: Colors.white)),
             ),
           ],
         ),
       ),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: SizedBox(
-        width: Get.width,
-        height: Get.height,
-        child: const Column(
-          children: <Widget>[
-            IntroWidget(),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class LogInScreen extends StatefulWidget {
-  const LogInScreen({super.key});
-
-  @override
-  State<LogInScreen> createState() => _LogInScreenState();
-}
-
-class _LogInScreenState extends State<LogInScreen> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Log In'),
-      ),
-      body: const Center(
-        child: Text('Log In Screen'),
-      ),
-    );
-  }
-}
-
-class IntroWidget extends StatelessWidget {
-  const IntroWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: Get.width,
-      decoration: const BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage('assets/blue1.jpg'),
-          fit: BoxFit.cover,
-        ),
-      ),
-      height: Get.height * 0.6,
     );
   }
 }
