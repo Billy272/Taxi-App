@@ -6,12 +6,39 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Log In'),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(100),
+        child: ClipPath(
+          // clipper: CustomClipper(),
+          child: AppBar(
+            backgroundColor: const Color.fromARGB(255, 0, 0, 50),
+            title: const Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Welcome Back!!',
+                  style: TextStyle(
+                    fontSize: 12,
+                    fontWeight: FontWeight.normal,
+                    color: Colors.white,
+                  ),),
+                Text(
+                  'Sign In',
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
       body: const Center(
         child: Text('Log In'),
       ),
+
     );
+
   }
 }

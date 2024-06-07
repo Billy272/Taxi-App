@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'home_screen.dart';
+import 'package:taxi_app/login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 void main() {
@@ -44,16 +44,17 @@ class IntroScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FaIcon(
-              FontAwesomeIcons.car,
+              FontAwesomeIcons.carAlt,
               color: Colors.white,
               size: 50,
             ),
             SizedBox(height: 10),
             Text(
-              'Taxi',
+              'Taxi App',
               style: TextStyle(
-                color: Colors.blue,
+                color: Colors.white,
                 fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ],
@@ -64,7 +65,7 @@ class IntroScreen extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const HomeScreen()),
+                  MaterialPageRoute(builder: (context) => const Login()),
                 );
               },
               icon: const Icon(Icons.login, color: Colors.white),
