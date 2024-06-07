@@ -1,5 +1,6 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:taxi_app/home_screen.dart';
 import 'package:taxi_app/login.dart';
 
 class SignUp extends StatelessWidget {
@@ -44,52 +45,173 @@ class SignUp extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            TextField(
-              textAlign: TextAlign.left,
-              decoration: InputDecoration(
-                labelText: 'Enter Email',
-                labelStyle: const TextStyle(
-                  color: Color.fromARGB(255, 0, 0, 55),
-                  fontWeight: FontWeight.bold,
-                ),
-                hintText: 'Email',
-                hintStyle: const TextStyle(
-                  color: Color.fromARGB(255, 0, 0, 55),
-                  fontWeight: FontWeight.normal,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+            const Text("Welcome to Taxi App",
+              style: TextStyle(
+                fontSize: 50,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 0, 0, 50),
+              ),
+            ),
+            const SizedBox(height: 20),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              child: Row(
+                children: <Widget>[
+                  Expanded(
+                    child: TextField(
+                      textAlign: TextAlign.left,
+                      decoration: InputDecoration(
+                        labelText: 'First Name',
+                        labelStyle: const TextStyle(
+                          color: Color.fromARGB(255, 0, 0, 55),
+                          fontWeight: FontWeight.bold,
+                        ),
+                        hintText: 'First Name',
+                        hintStyle: const TextStyle(
+                          color: Color.fromARGB(255, 0, 0, 55),
+                          fontWeight: FontWeight.normal,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 20),
+                  Expanded(
+                    child: TextField(
+                      textAlign: TextAlign.left,
+                      decoration: InputDecoration(
+                        labelText: 'Last Name',
+                        labelStyle: const TextStyle(
+                          color: Color.fromARGB(255, 0, 0, 55),
+                          fontWeight: FontWeight.bold,
+                        ),
+                        hintText: 'Last Name',
+                        hintStyle: const TextStyle(
+                          color: Color.fromARGB(255, 0, 0, 55),
+                          fontWeight: FontWeight.normal,
+                        ),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: TextField(
+                textAlign: TextAlign.left,
+                decoration: InputDecoration(
+                  labelText: 'Enter Email',
+                  labelStyle: const TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 55),
+                    fontWeight: FontWeight.bold,
+                  ),
+                  hintText: 'Email',
+                  hintStyle: const TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 55),
+                    fontWeight: FontWeight.normal,
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
               ),
             ),
-            const SizedBox(height: 10),
-            TextField(
-              textAlign: TextAlign.left,
-              decoration: InputDecoration(
-                labelText: 'Enter Password',
-                labelStyle: const TextStyle(
-                  color: Color.fromARGB(255, 0, 0, 55),
-                  fontWeight: FontWeight.bold,
-                ),
-                hintText: 'Password',
-                hintStyle: const TextStyle(
-                  color: Color.fromARGB(255, 0, 0, 55),
-                  fontWeight: FontWeight.normal,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+            const SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: TextField(
+                textAlign: TextAlign.left,
+                decoration: InputDecoration(
+                  labelText: 'Enter Phone Number',
+                  labelStyle: const TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 55),
+                    fontWeight: FontWeight.bold,
+                  ),
+                  hintText: '+254.....',
+                  hintStyle: const TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 55),
+                    fontWeight: FontWeight.normal,
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
                 ),
               ),
             ),
-            const SizedBox(height: 10),
+            const SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: TextField(
+                textAlign: TextAlign.left,
+                decoration: InputDecoration(
+                  labelText: 'Enter Password',
+                  labelStyle: const TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 55),
+                    fontWeight: FontWeight.bold,
+                  ),
+                  hintText: 'Password',
+                  hintStyle: const TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 55),
+                    fontWeight: FontWeight.normal,
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 15),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: TextField(
+                textAlign: TextAlign.left,
+                decoration: InputDecoration(
+                  labelText: "Confirm Password",
+                  labelStyle: const TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 55),
+                    fontWeight: FontWeight.bold,
+                  ),
+                  hintText: "Confirm Password",
+                  hintStyle: const TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 55),
+                    fontWeight: FontWeight.normal,
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                )
+              ),
+            ),
+            const SizedBox(height: 20),
+
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => const Login()),
+                  MaterialPageRoute(builder: (context) => const HomeScreen()),
                 );
               },
-              child: const Text('Sign Up'),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 0, 0, 50),
+                padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                )
+              ),
+              child: const Text('Sign Up',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
             ),
           ]
         ),

@@ -44,46 +44,52 @@ class Login extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-            TextField(
-              textAlign: TextAlign.left,
-              decoration: InputDecoration(
-                labelText: 'Enter Email',
-                labelStyle: const TextStyle(
-                  color: Color.fromARGB(255, 0, 0, 55),
-                  fontWeight: FontWeight.bold,
-                ),
-                hintText: 'Email',
-                hintStyle: const TextStyle(
-                  color: Color.fromARGB(255, 0, 0, 55),
-                  fontWeight: FontWeight.normal,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: TextField(
+                textAlign: TextAlign.left,
+                decoration: InputDecoration(
+                  labelText: 'Enter Email',
+                  labelStyle: const TextStyle(
                     color: Color.fromARGB(255, 0, 0, 55),
-                ),
+                    fontWeight: FontWeight.bold,
+                  ),
+                  hintText: 'Email',
+                  hintStyle: const TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 55),
+                    fontWeight: FontWeight.normal,
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                      color: Color.fromARGB(255, 0, 0, 55),
+                  ),
+                  ),
                 ),
               ),
             ),
             const SizedBox(height: 20),
-            TextField(
-              textAlign: TextAlign.left,
-              obscureText: true,
-              decoration: InputDecoration(
-                labelText: 'Enter Password',
-                labelStyle: const TextStyle(
-                  color: Color.fromARGB(255, 0, 0, 55),
-                  fontWeight: FontWeight.bold,
-                ),
-                hintText: 'Password',
-                hintStyle: const TextStyle(
-                  color: Color.fromARGB(255, 0, 0, 55),
-                  fontWeight: FontWeight.normal,
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
-                  borderSide: const BorderSide(
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20.0),
+              child: TextField(
+                textAlign: TextAlign.left,
+                obscureText: true,
+                decoration: InputDecoration(
+                  labelText: 'Enter Password',
+                  labelStyle: const TextStyle(
                     color: Color.fromARGB(255, 0, 0, 55),
+                    fontWeight: FontWeight.bold,
+                  ),
+                  hintText: 'Password',
+                  hintStyle: const TextStyle(
+                    color: Color.fromARGB(255, 0, 0, 55),
+                    fontWeight: FontWeight.normal,
+                  ),
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(10),
+                    borderSide: const BorderSide(
+                      color: Color.fromARGB(255, 0, 0, 55),
+                    ),
                   ),
                 ),
               ),
