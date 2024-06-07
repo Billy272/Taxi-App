@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:taxi_app/home_screen.dart';
+import 'package:taxi_app/forgot_password.dart';
+import 'package:taxi_app/sign_up.dart';
 
 class Login extends StatelessWidget {
   const Login({super.key});
@@ -65,6 +68,7 @@ class Login extends StatelessWidget {
             const SizedBox(height: 20),
             TextField(
               textAlign: TextAlign.left,
+              obscureText: true,
               decoration: InputDecoration(
                 labelText: 'Enter Password',
                 labelStyle: const TextStyle(
@@ -84,11 +88,132 @@ class Login extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const ForgotPassword()),
+                  );
+                },
+                child: const Align(
+                  alignment: Alignment.centerRight,
+                  child: Text(
+                    'Forgot Password?',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 55),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen()));
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: const Color.fromARGB(255, 0, 0, 50),
+                padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: const Text('Sign In',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                children: <Widget>[
+                  Expanded(child: Divider(
+                    color: Color.fromARGB(255, 0, 0, 55),
+                    thickness: 1,
+                  )),
+                  Padding(padding: EdgeInsets.symmetric(horizontal: 8.0),
+                    child: Text('or',
+                      style: TextStyle(
+                        color: Colors.blueGrey,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Expanded(child: Divider(
+                    color: Color.fromARGB(255, 0, 0, 55),
+                    thickness: 1,
+                  )),
+                ],
+              ),
+            ),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                //Google sign in code
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 10),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Image.network('https://www.pngall.com/wp-content/uploads/13/Google-Logo-PNG-Image.png'
+                    , height: 30, width: 30, fit: BoxFit.fill),
+                  const SizedBox(width: 10),
+                  const Text('Sign In with Google',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 55),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 30),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  const Text('Don\'t have an account? ',
+                    style: TextStyle(
+                      color: Color.fromARGB(255, 0, 0, 55),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const SignUp())
+                      );
+                    },
+                    child: const Text('Sign Up',
+                      style: TextStyle(
+                        color: Color.fromARGB(255, 0, 0, 55),
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
         )
       ),
     );
-
   }
 }
 
