@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:taxi_app/login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:taxi_app/home_screen.dart';
+import 'package:taxi_app/wallet.dart';
+import 'package:taxi_app/profile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,6 +22,10 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: const IntroScreen(),
+      routes: {
+        '/login': (context) => const Login(),
+        '/home': (context) => const PageNav(),
+      },
     );
   }
 }
@@ -78,3 +85,55 @@ class IntroScreen extends StatelessWidget {
     );
   }
 }
+
+class PageNav extends StatefulWidget {
+  const PageNav({super.key});
+
+  @override
+  State<PageNav> createState() => _PageNavState();
+}
+
+class _PageNavState extends State<PageNav> {
+  int _currentIndex = 0;
+
+  final List<Widget> _children = const [
+    HomeScreen(),
+    WalletScreen(),
+    ProfileScreen(),
+  ];
+
+  void onTabTapped(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: _children[_currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        onTap: onTabTapped,
+        currentIndex: _currentIndex,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home_outlined),
+            label: 'Home',
+            backgroundColor: Color.fromARGB(255, 0, 0, 55)
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_balance_wallet_outlined),
+            label: 'Wallet',
+            backgroundColor: Color.fromARGB(255, 0, 0, 55),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline_rounded),
+            label: 'Profile',
+            backgroundColor: Color.fromARGB(255, 0, 0, 55),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
