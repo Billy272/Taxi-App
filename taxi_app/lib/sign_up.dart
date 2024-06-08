@@ -1,6 +1,5 @@
 // import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:taxi_app/home_screen.dart';
 import 'package:taxi_app/login.dart';
 
 class SignUp extends StatelessWidget {

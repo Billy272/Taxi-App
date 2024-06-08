@@ -31,8 +31,9 @@ class _HomeScreenState extends State<HomeScreen> {
       });
       return;
     }
-    permission=await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied){
+
+    permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.deniedForever) {
         setState(() {
@@ -47,6 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
         return;
       }
     }
+
     Position position = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.high,
     );
@@ -63,33 +65,37 @@ class _HomeScreenState extends State<HomeScreen> {
         title: const Text('Taxi App'),
         backgroundColor: const Color.fromARGB(255, 0, 0, 50),
       ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text('Welcome to Taxi App',
-              style: TextStyle(
-                fontSize: 50,
-                fontWeight: FontWeight.bold,
-                color: Color.fromARGB(255, 0, 0, 50),
-              ),
-            ),
-            const SizedBox(height: 20),
-            FloatingActionButton.extended(
-              onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => const Login()),
-                // );
-              },
-              icon: const Icon(Icons.login, color: Colors.white),
-              backgroundColor: const Color.fromARGB(255, 0, 0, 50),
-              label: const Text('Log In', style: TextStyle(color: Colors.white)),
-            ),
-          ],
+      body: _loading
+          ? const Center(child: CircularProgressIndicator())
+          : _currentPosition == null
+          ? const Center(child: Text('Location Services denied'))
+          : FlutterMap(
+        options: MapOptions(
+          initialCenter: _currentPosition!,
+          minZoom: 13.0,
         ),
+        // layers: [
+        //   TileLayer(
+        //     urlTemplate: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        //     subdomains: const ['a', 'b', 'c'],
+        //   ),
+        //   MarkerLayer(
+        //     markers: [
+        //       Marker(
+        //         width: 80.0,
+        //         height: 80.0,
+        //         point: _currentPosition!, child: const Icon(Icons.location_on, size: 50, color: Colors.red),
+        //         // builder: (ctx) => const Icon(
+        //         //   Icons.location_on,
+        //         //   size: 50,
+        //         //   color: Colors.red,
+        //         // ),
+        //       ),
+        //     ],
+        //   ),
+        // ],
+        children: const [],
       ),
-
     );
   }
 }

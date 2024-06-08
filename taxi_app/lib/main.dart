@@ -51,7 +51,7 @@ class IntroScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FaIcon(
-              FontAwesomeIcons.carAlt,
+              FontAwesomeIcons.carRear,
               color: Colors.white,
               size: 50,
             ),
