@@ -20,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Taxi App'),
-        backgroundColor: const Color.fromARGB(255, 0, 0, 50),
+        backgroundColor: const Color.fromARGB(0, 0, 0, 0),
       ),
       body: Consumer<LocationProvider>(
         builder: (context, locationProvider, child) {
