@@ -1,12 +1,19 @@
-allprojects {
-    ext.kotlin_version = '2.0.0'
-    repositories {
+buildscript {
+    ext.kotlin_version = '1.9.0'
+   repositories {
         google()
         mavenCentral()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:7.5.0'
+        classpath 'com.android.tools.build:gradle:7.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
     }
 }
 
