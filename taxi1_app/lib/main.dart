@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// import 'package:flutter/widgets.dart';
 import 'package:taxi1_app/login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:taxi1_app/home_screen.dart';
@@ -6,6 +7,22 @@ import 'package:taxi1_app/wallet.dart';
 import 'package:taxi1_app/profile.dart';
 
 void main() {
+  ErrorWidget.builder = (FlutterErrorDetails details) {
+    return Material(
+      child: Container(
+        color: Colors.blueGrey,
+        child: const Text(
+          'An error occurred. Please restart the app.',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontStyle: FontStyle.italic,
+          ),
+          textDirection: TextDirection.ltr,
+        ),
+      ),
+    );
+  };
   runApp(const MyApp());
 }
 
