@@ -144,52 +144,54 @@ class _HomeScreenState extends State<HomeScreen> {
         return;
       }
     }
-    if (permission == LocationPermission.whileInUse || permission == LocationPermission.always) {
+    if (permission == LocationPermission.whileInUse ||
+        permission == LocationPermission.always) {
       // Permission granted
     }
   }
 
   Widget _buildSearchBar(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: const [
-          BoxShadow(
-            color: Colors.black12,
-            offset: Offset(0, 2),
-            blurRadius: 6,
-          ),
-        ],
-      ),
-      child: GooglePlaceAutoCompleteTextField(
-        textEditingController: TextEditingController(),
-        googleAPIKey: googleApiKey,
-        inputDecoration: const InputDecoration(
-          hintText: 'Search Destination',
-          border: InputBorder.none,
-          contentPadding: EdgeInsets.zero,
+        padding: const EdgeInsets.symmetric(horizontal: 15),
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: const [
+            BoxShadow(
+              color: Colors.black12,
+              offset: Offset(0, 2),
+              blurRadius: 6,
+            ),
+          ],
         ),
-        debounceTime: 500,
-        countries: ['ke'],
-        isLatLngRequired: true,
-        getPlaceDetailWithLatLng: (Prediction prediction) {
-          setState(() {
-            _destination = LatLng(prediction.lat, prediction.lng);
-            _markers.add(Marker(
-              markerId: const MarkerId('destination'),
-              position: _destination!,
-              infoWindow: const InfoWindow(
-                title: 'Destination',
-              ),
-              icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueBlue),
-            ));
-            _addPath();
-          });
-        },
-      )
-    );
+        child: GooglePlaceAutoCompleteTextField(
+          textEditingController: TextEditingController(),
+          googleAPIKey: googleApiKey,
+          inputDecoration: const InputDecoration(
+            hintText: 'Search Destination',
+            border: InputBorder.none,
+            contentPadding: EdgeInsets.zero,
+          ),
+          debounceTime: 500,
+          countries: ['ke'],
+          isLatLngRequired: true,
+          getPlaceDetailWithLatLng: (Prediction prediction) {
+            setState(() {
+              _destination =
+                  LatLng(prediction.lat as double, prediction.lng as double);
+              _markers.add(Marker(
+                markerId: const MarkerId('destination'),
+                position: _destination!,
+                infoWindow: const InfoWindow(
+                  title: 'Destination',
+                ),
+                icon: BitmapDescriptor.defaultMarkerWithHue(
+                    BitmapDescriptor.hueBlue),
+              ));
+              _addPath();
+            });
+          },
+        ));
   }
 
   Future<void> _showTravelTime() async {
