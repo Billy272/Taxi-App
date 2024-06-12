@@ -1,8 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '.env.dart';
 
 class Directions {
   final LatLngBounds bounds;
@@ -16,6 +14,8 @@ class Directions {
     required this.totalDistance,
     required this.totalDuration,
   });
+
+
 
   factory Directions.fromMap(Map<String, dynamic> map) {
     final routes = map['routes'];
@@ -40,4 +40,7 @@ class Directions {
           _decodePoly(overviewPolyline: data['overview_polyline']['points']),
     );
   }
+}
+
+_decodePoly({required overviewPolyline}) {
 }
