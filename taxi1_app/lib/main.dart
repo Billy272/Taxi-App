@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+// import 'package:flutter/widgets.dart';
 import 'package:taxi1_app/login.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:taxi1_app/home_screen.dart';
@@ -7,6 +7,22 @@ import 'package:taxi1_app/wallet.dart';
 import 'package:taxi1_app/profile.dart';
 
 void main() {
+  ErrorWidget.builder = (FlutterErrorDetails details) {
+    return Material(
+      child: Container(
+        color: Colors.blueGrey,
+        child: const Text(
+          'An error occurred. Please restart the app.',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontStyle: FontStyle.italic,
+          ),
+          textDirection: TextDirection.ltr,
+        ),
+      ),
+    );
+  };
   runApp(const MyApp());
 }
 
@@ -15,21 +31,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-        create: (context) => LocationProvider(),
-        child: MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Taxi App',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-            visualDensity: VisualDensity.adaptivePlatformDensity,
-          ),
-          home: const IntroScreen(),
-          routes: {
-            '/login': (context) => const Login(),
-            '/home': (context) => const PageNav(),
-          },
-        )
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Taxi App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: const IntroScreen(),
+      routes: {
+        '/login': (context) => const Login(),
+        '/home': (context) => const PageNav(),
+      },
     );
   }
 }
@@ -55,7 +68,7 @@ class IntroScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             FaIcon(
-              FontAwesomeIcons.carAlt,
+              FontAwesomeIcons.carRear,
               color: Colors.white,
               size: 50,
             ),
