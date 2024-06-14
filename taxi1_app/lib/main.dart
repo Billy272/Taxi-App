@@ -132,6 +132,7 @@ class _PageNavState extends State<PageNav> {
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped,
         currentIndex: _currentIndex,
+
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
@@ -140,7 +141,7 @@ class _PageNavState extends State<PageNav> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_balance_wallet_outlined),
-            label: 'Wallet',
+            label: 'Payment',
             backgroundColor: Color.fromARGB(255, 0, 0, 55),
           ),
           BottomNavigationBarItem(

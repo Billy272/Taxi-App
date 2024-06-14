@@ -8,7 +8,7 @@ import 'dart:convert';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:taxi1_app/.env.dart';
 import 'package:google_places_flutter/google_places_flutter.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+// import 'package:flutter_dotenv/flutter_dotenv.dart';
 // import 'package:taxi1_app/direction_model.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -158,9 +158,9 @@ class _HomeScreenState extends State<HomeScreen> {
           borderRadius: BorderRadius.circular(10),
           boxShadow: const [
             BoxShadow(
-              color: Colors.black12,
+              color: Color.fromARGB(255, 0, 0, 55),
               offset: Offset(0, 2),
-              blurRadius: 6,
+              blurRadius: 10,
             ),
           ],
         ),
@@ -168,12 +168,13 @@ class _HomeScreenState extends State<HomeScreen> {
           textEditingController: TextEditingController(),
           googleAPIKey: googleApiKey,
           inputDecoration: const InputDecoration(
+
             hintText: 'Search Destination',
             border: InputBorder.none,
             contentPadding: EdgeInsets.zero,
           ),
           debounceTime: 500,
-          countries: ['ke'],
+          countries: const ['ke'],
           isLatLngRequired: true,
           getPlaceDetailWithLatLng: (Prediction prediction) {
             setState(() {
@@ -219,6 +220,14 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
     );
+  }
+
+
+  Future<Map<String, dynamic>> _getPlaceDetails(String placeId) async {
+    final response = await http.get(Uri.parse(
+        'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeId&fields=name,formatted_address,geometry&key=RHsanV3zptLElh-iOuNYYdZdAmQ='));
+    final json = jsonDecode(response.body);
+    return json['result'] as Map<String, dynamic>;
   }
 
   @override
