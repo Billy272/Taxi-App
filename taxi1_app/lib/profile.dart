@@ -16,13 +16,12 @@ class ProfileScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                // Container(
-                //   margin: const EdgeInsets.only(bottom: 20),
-                //   child: const CircleAvatar(
-                //     radius: 50,
-                //     // backgroundImage: AssetImage('assets/images/profile.jpg'),
-                //   ),
-                // ),
+                Center(
+                    child: CircleAvatar(
+                      radius: 50,
+                      backgroundImage: NetworkImage('https://via.placeholder.com/150/0000FF/808080.png'),
+                    ),
+                ),
                 Text(
                   'John Doe',
                   style: TextStyle(

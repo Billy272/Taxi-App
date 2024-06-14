@@ -1,9 +1,47 @@
 // import 'package:flutter/cupertino.dart';
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:taxi1_app/login.dart';
+import 'package:image_picker/image_picker.dart';
+import 'profile.dart';
+import 'user_profile';
 
-class SignUp extends StatelessWidget {
+class SignUp extends StatefulWidget {
   const SignUp({super.key});
+
+  @override
+  State<SignUp> createState() => _SignUpState();
+}
+
+class _SignUpState extends State<SignUp> {
+  File? _image;
+  final picker = ImagePicker();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  Future<void> _pickImage() async{
+    final pickedFile = await picker.pickImage(source: ImageSource.gallery);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected');
+      }
+    });
+  }
+
+  Future<void> _takePhoto() async {
+    final pickedFile = await picker.pickImage(source: ImageSource.camera);
+
+    setState(() {
+      if (pickedFile != null) {
+        _image = File(pickedFile.path);
+      } else {
+        print('No image selected.');
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -39,11 +77,54 @@ class SignUp extends StatelessWidget {
           ),
         ),
 
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(13.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
+            GestureDetector(
+              onTap: () {
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) {
+                    return Container(
+                      height: 150,
+                      child: Column(
+                        children: <Widget>[
+                          ListTile(
+                            leading: const Icon(Icons.camera),
+                            title: const Text('Take a photo'),
+                            onTap: () {
+                              _takePhoto();
+                              Navigator.pop(context);
+                            },
+                          ),
+                          ListTile(
+                            leading: const Icon(Icons.image),
+                            title: const Text('Choose from gallery'),
+                            onTap: () {
+                              _pickImage();
+                              Navigator.pop(context);
+                            },
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                );
+              },
+              child: CircleAvatar(
+                radius: 100,
+                backgroundImage: _image != null ? FileImage(_image!) : null,
+                child: _image == null
+                    ? const Icon(
+                        Icons.camera_alt,
+                        size: 50,
+                      )
+                    : null,
+              ),
+            ),
             const Text("Welcome to Taxi App",
               style: TextStyle(
                 fontSize: 50,
@@ -112,6 +193,7 @@ class SignUp extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                   hintText: 'Email',
+                  controller: _emailController,
                   hintStyle: const TextStyle(
                     color: Color.fromARGB(255, 0, 0, 55),
                     fontWeight: FontWeight.normal,
@@ -156,6 +238,7 @@ class SignUp extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                   hintText: 'Password',
+                  controller: _passwordController,
                   hintStyle: const TextStyle(
                     color: Color.fromARGB(255, 0, 0, 55),
                     fontWeight: FontWeight.normal,
