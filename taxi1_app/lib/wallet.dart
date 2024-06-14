@@ -90,12 +90,17 @@ class _WalletScreenState extends State<WalletScreen> {
             ),
           ),
           const SizedBox(height: 20),
-          Container(
-            child: Text('Amount to Pay: ',
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
+          const Text('Amount to Pay: ',
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          const SizedBox(height: 20),
+          const Text('Ksh. 500',
+            style: TextStyle(
+              fontSize: 100,
+              fontWeight: FontWeight.bold,
             ),
           )
         ],
