@@ -5,7 +5,7 @@ import 'user_profile.dart'; // Import the user profile model
 class ProfilePage extends StatelessWidget {
   final UserProfile userProfile;
 
-  ProfilePage({required this.userProfile});
+  const ProfilePage({super.key, required this.userProfile});
 
   @override
   Widget build(BuildContext context) {
@@ -39,18 +39,18 @@ class ProfilePage extends StatelessWidget {
                       backgroundColor: Colors.white,
                       child: userProfile.profileImage != null
                           ? ClipOval(
-                        child: Image.file(
-                          userProfile.profileImage!,
-                          width: 150,
-                          height: 150,
-                          fit: BoxFit.cover,
-                        ),
-                      )
+                              child: Image.file(
+                                userProfile.profileImage!,
+                                width: 150,
+                                height: 150,
+                                fit: BoxFit.cover,
+                              ),
+                            )
                           : Icon(
-                        Icons.camera_alt,
-                        size: 80,
-                        color: Colors.grey[800],
-                      ),
+                              Icons.camera_alt,
+                              size: 80,
+                              color: Colors.grey[800],
+                            ),
                     ),
                   ),
                 ],
@@ -60,7 +60,8 @@ class ProfilePage extends StatelessWidget {
             Center(
               child: Text(
                 'Name: ${userProfile.name}',
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                style:
+                    const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
             const Divider(),
@@ -81,11 +82,12 @@ class ProfilePage extends StatelessWidget {
               onTap: () {
                 showAboutDialog(
                   context: context,
-                  applicationName: 'Profile App',
+                  applicationName: 'Taxi App',
                   applicationVersion: '1.0.0',
                   applicationIcon: const Icon(Icons.account_circle),
                   children: <Widget>[
-                    const Text('This is a sample profile app.'),
+                    const Text(
+                        'Leave alone a simple name like Taxi App, we\'re the best cab providers in town.'),
                   ],
                 );
               },
@@ -93,30 +95,22 @@ class ProfilePage extends StatelessWidget {
             ListTile(
               leading: const Icon(Icons.settings),
               title: const Text('Settings'),
-              onTap: () {
-
-              },
+              onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.security),
               title: const Text('Privacy Policy'),
-              onTap: () {
-
-              },
+              onTap: () {},
             ),
             ListTile(
               leading: const Icon(Icons.help),
               title: const Text('Help & Support'),
-              onTap: () {
-              },
+              onTap: () {},
             ),
             ListTile(
-              leading: const Icon(Icons.exit_to_app),
-              title: const Text('Logout'),
-              onTap: () {
-
-              }
-            ),
+                leading: const Icon(Icons.exit_to_app),
+                title: const Text('Logout'),
+                onTap: () {}),
           ],
         ),
       ),
