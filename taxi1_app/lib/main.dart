@@ -43,12 +43,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/login': (context) => const Login(),
         '/home': (context) => const PageNav(
-          userProfile: UserProfile(
-              email: '',
-              name: '',
-              password: ''
-          ),
-        ),
+              userProfile: UserProfile(email: '', name: '', password: ''),
+            ),
       },
     );
   }
@@ -72,24 +68,24 @@ class IntroScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: const Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FaIcon(
-              FontAwesomeIcons.carRear,
-              color: Colors.white,
-              size: 50,
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Taxi App',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FaIcon(
+                    FontAwesomeIcons.carRear,
+                    color: Colors.white,
+                    size: 50,
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Taxi App',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
             ),
             const SizedBox(height: 50),
             FloatingActionButton.extended(
@@ -101,7 +97,8 @@ class IntroScreen extends StatelessWidget {
               },
               icon: const Icon(Icons.login, color: Colors.white),
               backgroundColor: const Color.fromARGB(255, 0, 0, 50),
-              label: const Text('Log In', style: TextStyle(color: Colors.white)),
+              label:
+                  const Text('Log In', style: TextStyle(color: Colors.white)),
             ),
           ],
         ),
@@ -141,13 +138,11 @@ class _PageNavState extends State<PageNav> {
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped,
         currentIndex: _currentIndex,
-
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-            backgroundColor: Color.fromARGB(255, 0, 0, 55)
-          ),
+              icon: Icon(Icons.home_outlined),
+              label: 'Home',
+              backgroundColor: Color.fromARGB(255, 0, 0, 55)),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_balance_wallet_outlined),
             label: 'Payment',
@@ -163,4 +158,3 @@ class _PageNavState extends State<PageNav> {
     );
   }
 }
-

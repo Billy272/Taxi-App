@@ -6,10 +6,10 @@ class UserProfile {
   final String password;
   final File? profileImage;
 
-  UserProfile({
-    required this.name,
-    required this.email,
-    required this.password,
+  const UserProfile({
+    this.name = "",
+    this.email = "",
+    this.password = "",
     this.profileImage,
   });
 }
