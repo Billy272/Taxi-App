@@ -5,6 +5,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:taxi1_app/home_screen.dart';
 import 'package:taxi1_app/wallet.dart';
 import 'package:taxi1_app/profile.dart';
+import 'package:taxi1_app/user_profile.dart';
 
 void main() {
   ErrorWidget.builder = (FlutterErrorDetails details) {
@@ -41,7 +42,13 @@ class MyApp extends StatelessWidget {
       home: const IntroScreen(),
       routes: {
         '/login': (context) => const Login(),
-        '/home': (context) => const PageNav(),
+        '/home': (context) => const PageNav(
+          userProfile: UserProfile(
+              email: '',
+              name: '',
+              password: ''
+          ),
+        ),
       },
     );
   }
@@ -104,7 +111,9 @@ class IntroScreen extends StatelessWidget {
 }
 
 class PageNav extends StatefulWidget {
-  const PageNav({super.key});
+  final UserProfile userProfile;
+
+  const PageNav({super.key, required this.userProfile});
 
   @override
   State<PageNav> createState() => _PageNavState();
@@ -113,10 +122,10 @@ class PageNav extends StatefulWidget {
 class _PageNavState extends State<PageNav> {
   int _currentIndex = 0;
 
-  final List<Widget> _children = const [
-    HomeScreen(),
-    WalletScreen(),
-    ProfileScreen(),
+  final List<Widget> _children = <Widget>[
+    const HomeScreen(),
+    const WalletScreen(),
+    ProfilePage(userProfile: UserProfile(email: '', name: '', password: '')),
   ];
 
   void onTabTapped(int index) {
