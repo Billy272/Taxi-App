@@ -30,15 +30,15 @@ class _WalletScreenState extends State<WalletScreen> {
       body: Column(
         children: [
           const SizedBox(height: 20),
-            const Center(
-              child: Text(
-                'Select a payment method',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+          const Center(
+            child: Text(
+              'Select a payment method',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
               ),
             ),
+          ),
           const SizedBox(height: 10),
           SizedBox(
             height: 200,
@@ -48,7 +48,8 @@ class _WalletScreenState extends State<WalletScreen> {
               children: <Widget>[
                 WalletCard(
                   title: 'M-Pesa',
-                  trailing: const Icon(Icons.phone_android_outlined, color: Colors.white70),
+                  trailing: const Icon(Icons.phone_android_outlined,
+                      color: Colors.white70),
                   description: 'Pay via M-Pesa',
                   buttonText: 'Pay Now',
                   buttonAction: () {
@@ -58,7 +59,8 @@ class _WalletScreenState extends State<WalletScreen> {
                 ),
                 WalletCard(
                   title: 'Airtel Money',
-                  trailing: const Icon(Icons.phone_android_outlined, color: Colors.white70),
+                  trailing: const Icon(Icons.phone_android_outlined,
+                      color: Colors.white70),
                   description: 'Pay via Airtel Money',
                   buttonText: 'Pay Now',
                   buttonAction: () {
@@ -69,7 +71,8 @@ class _WalletScreenState extends State<WalletScreen> {
                 WalletCard(
                   title: 'Google Pay',
                   description: 'Pay via Google Pay',
-                  trailing: const Icon(Icons.g_mobiledata, color: Colors.white70),
+                  trailing:
+                      const Icon(Icons.g_mobiledata, color: Colors.white70),
                   buttonAction: () {
                     return safeLaunch('https://pay.google.com/');
                   },
@@ -90,14 +93,16 @@ class _WalletScreenState extends State<WalletScreen> {
             ),
           ),
           const SizedBox(height: 20),
-          const Text('Amount to Pay: ',
+          const Text(
+            'Amount to Pay: ',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
             ),
           ),
           const SizedBox(height: 20),
-          const Text('Ksh. 500',
+          const Text(
+            'Ksh. 500',
             style: TextStyle(
               fontSize: 100,
               fontWeight: FontWeight.bold,
@@ -160,7 +165,8 @@ class WalletCard extends StatelessWidget {
               onPressed: () => buttonAction(),
               style: ElevatedButton.styleFrom(
                 backgroundColor: buttonColor,
-                padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 80, vertical: 10),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10),
                 ),

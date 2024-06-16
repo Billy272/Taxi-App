@@ -5,6 +5,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:taxi1_app/home_screen.dart';
 import 'package:taxi1_app/wallet.dart';
 import 'package:taxi1_app/profile.dart';
+import 'package:taxi1_app/user_profile.dart';
+// import 'package:taxi1_app/sign_up.dart';
 
 void main() {
   ErrorWidget.builder = (FlutterErrorDetails details) {
@@ -41,7 +43,9 @@ class MyApp extends StatelessWidget {
       home: const IntroScreen(),
       routes: {
         '/login': (context) => const Login(),
-        '/home': (context) => const PageNav(),
+        '/home': (context) => PageNav(
+              userProfile: UserProfile(email: '', name: '', password: ''),
+            ),
       },
     );
   }
@@ -65,24 +69,24 @@ class IntroScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
               ),
               child: const Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            FaIcon(
-              FontAwesomeIcons.carRear,
-              color: Colors.white,
-              size: 50,
-            ),
-            SizedBox(height: 10),
-            Text(
-              'Taxi App',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  FaIcon(
+                    FontAwesomeIcons.carRear,
+                    color: Colors.white,
+                    size: 50,
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    'Taxi App',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
             ),
             const SizedBox(height: 50),
             FloatingActionButton.extended(
@@ -94,7 +98,8 @@ class IntroScreen extends StatelessWidget {
               },
               icon: const Icon(Icons.login, color: Colors.white),
               backgroundColor: const Color.fromARGB(255, 0, 0, 50),
-              label: const Text('Log In', style: TextStyle(color: Colors.white)),
+              label:
+                  const Text('Log In', style: TextStyle(color: Colors.white)),
             ),
           ],
         ),
@@ -104,7 +109,9 @@ class IntroScreen extends StatelessWidget {
 }
 
 class PageNav extends StatefulWidget {
-  const PageNav({super.key});
+  final UserProfile userProfile;
+
+  const PageNav({super.key, required this.userProfile});
 
   @override
   State<PageNav> createState() => _PageNavState();
@@ -113,11 +120,17 @@ class PageNav extends StatefulWidget {
 class _PageNavState extends State<PageNav> {
   int _currentIndex = 0;
 
-  final List<Widget> _children = const [
-    HomeScreen(),
-    WalletScreen(),
-    ProfileScreen(),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _children = <Widget>[
+      const HomeScreen(),
+      const WalletScreen(),
+      ProfilePage(userProfile: widget.userProfile),
+    ];
+  }
+
+  late List<Widget> _children;
 
   void onTabTapped(int index) {
     setState(() {
@@ -132,13 +145,11 @@ class _PageNavState extends State<PageNav> {
       bottomNavigationBar: BottomNavigationBar(
         onTap: onTabTapped,
         currentIndex: _currentIndex,
-
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home_outlined),
-            label: 'Home',
-            backgroundColor: Color.fromARGB(255, 0, 0, 55)
-          ),
+              icon: Icon(Icons.home_outlined),
+              label: 'Home',
+              backgroundColor: Color.fromARGB(255, 0, 0, 55)),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_balance_wallet_outlined),
             label: 'Payment',
@@ -154,4 +165,3 @@ class _PageNavState extends State<PageNav> {
     );
   }
 }
-
