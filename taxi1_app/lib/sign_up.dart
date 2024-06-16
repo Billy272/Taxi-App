@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'main.dart';
-import 'profile.dart';
 import 'user_profile.dart';
-import 'home_screen.dart';
-import 'wallet.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -61,7 +58,7 @@ class _SignUpState extends State<SignUp> {
               children: [
                 SizedBox(height: 10),
                 Text(
-                  'Create your account!!',
+                  'Create Account!!',
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.normal,
@@ -94,7 +91,7 @@ class _SignUpState extends State<SignUp> {
                     context: context,
                     builder: (context) {
                       return Container(
-                        height: 150,
+                        height: 100,
                         child: Column(
                           children: <Widget>[
                             ListTile(
@@ -124,9 +121,9 @@ class _SignUpState extends State<SignUp> {
                   backgroundImage: _image != null ? FileImage(_image!) : null,
                   child: _image == null
                       ? const Icon(
-                    Icons.camera_alt,
-                    size: 50,
-                  )
+                          Icons.camera_alt,
+                          size: 50,
+                        )
                       : null,
                 ),
               ),
@@ -285,21 +282,24 @@ class _SignUpState extends State<SignUp> {
               ElevatedButton(
                 onPressed: () {
                   UserProfile userProfile = UserProfile(
-                    name: '${_firstNameController.text} ${_lastNameController.text}',
+                    name:
+                        '${_firstNameController.text} ${_lastNameController.text}',
                     email: _emailController.text,
                     password: _passwordController.text,
                     profileImage: _image,
                   );
-                  Navigator.push(
+                  Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
                       builder: (context) => PageNav(userProfile: userProfile),
                     ),
+                    (Route<dynamic> route) => false,
                   );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color.fromARGB(255, 0, 0, 50),
-                  padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 10),
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 80, vertical: 10),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),

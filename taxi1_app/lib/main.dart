@@ -6,6 +6,7 @@ import 'package:taxi1_app/home_screen.dart';
 import 'package:taxi1_app/wallet.dart';
 import 'package:taxi1_app/profile.dart';
 import 'package:taxi1_app/user_profile.dart';
+// import 'package:taxi1_app/sign_up.dart';
 
 void main() {
   ErrorWidget.builder = (FlutterErrorDetails details) {
@@ -42,7 +43,7 @@ class MyApp extends StatelessWidget {
       home: const IntroScreen(),
       routes: {
         '/login': (context) => const Login(),
-        '/home': (context) => const PageNav(
+        '/home': (context) => PageNav(
               userProfile: UserProfile(email: '', name: '', password: ''),
             ),
       },
@@ -119,11 +120,17 @@ class PageNav extends StatefulWidget {
 class _PageNavState extends State<PageNav> {
   int _currentIndex = 0;
 
-  final List<Widget> _children = <Widget>[
-    const HomeScreen(),
-    const WalletScreen(),
-    ProfilePage(userProfile: UserProfile(email: '', name: '', password: '')),
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _children = <Widget>[
+      const HomeScreen(),
+      const WalletScreen(),
+      ProfilePage(userProfile: widget.userProfile),
+    ];
+  }
+
+  late List<Widget> _children;
 
   void onTabTapped(int index) {
     setState(() {

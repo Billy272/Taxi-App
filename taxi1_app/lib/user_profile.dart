@@ -1,15 +1,15 @@
-import 'dart:io';
+import 'dart:io' show File;
 
 class UserProfile {
-  final String name;
-  final String email;
-  final String password;
-  final File? profileImage;
+  String name;
+  String email;
+  String password;
+  File? profileImage;
 
-  const UserProfile({
-    this.name = "",
-    this.email = "",
-    this.password = "",
+  UserProfile({
+    required this.name,
+    required this.email,
+    required this.password,
     this.profileImage,
   });
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 // import 'dart:io';
-import 'user_profile.dart'; // Import the user profile model
+import 'user_profile.dart';
 
 class ProfilePage extends StatelessWidget {
   final UserProfile userProfile;
@@ -65,15 +65,15 @@ class ProfilePage extends StatelessWidget {
               ),
             ),
             const Divider(),
-            ListTile(
-              leading: const Icon(Icons.email),
-              title: const Text('Email'),
-              subtitle: Text('${userProfile.email}'),
+            const ListTile(
+              leading: Icon(Icons.email),
+              title: Text('Email'),
+              subtitle: Text('userProfile.email'),
             ),
-            ListTile(
-              leading: const Icon(Icons.lock),
-              title: const Text('Password'),
-              subtitle: Text('${userProfile.password}'),
+            const ListTile(
+              leading: Icon(Icons.lock),
+              title: Text('Password'),
+              subtitle: Text('userProfile.password'),
             ),
             const Divider(),
             ListTile(
