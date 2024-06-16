@@ -91,11 +91,11 @@ class _SignUpState extends State<SignUp> {
                     context: context,
                     builder: (context) {
                       return Container(
-                        height: 100,
+                        height: 90,
                         child: Column(
                           children: <Widget>[
                             ListTile(
-                              leading: const Icon(Icons.camera),
+                              leading: const Icon(Icons.camera_outlined),
                               title: const Text('Take a photo'),
                               onTap: () {
                                 _takePhoto();
@@ -103,7 +103,7 @@ class _SignUpState extends State<SignUp> {
                               },
                             ),
                             ListTile(
-                              leading: const Icon(Icons.image),
+                              leading: const Icon(Icons.image_outlined),
                               title: const Text('Choose from gallery'),
                               onTap: () {
                                 _pickImage();
@@ -117,7 +117,7 @@ class _SignUpState extends State<SignUp> {
                   );
                 },
                 child: CircleAvatar(
-                  radius: 100,
+                  radius: 80,
                   backgroundImage: _image != null ? FileImage(_image!) : null,
                   child: _image == null
                       ? const Icon(

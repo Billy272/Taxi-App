@@ -1,0 +1,48 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "taxi1_app",
+            "cwd": "taxi1_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "taxi1_app (profile mode)",
+            "cwd": "taxi1_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "taxi1_app (release mode)",
+            "cwd": "taxi1_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "taxi_app",
+            "cwd": "taxi_app",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "taxi_app (profile mode)",
+            "cwd": "taxi_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "taxi_app (release mode)",
+            "cwd": "taxi_app",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
