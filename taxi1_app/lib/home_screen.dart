@@ -25,6 +25,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final Set<Polyline> _polylines = {};
   List<LatLng> polylineCoordinates = [];
   PolylinePoints polylinePoints = PolylinePoints();
+  String travelMode = 'driving';
 
   static const _initialCameraPosition = CameraPosition(
     target: LatLng(-1.2921, 36.8219),
@@ -110,7 +111,13 @@ class _HomeScreenState extends State<HomeScreen> {
       googleApiKey,
       PointLatLng(_origin.latitude, _origin.longitude),
       PointLatLng(_destination!.latitude, _destination!.longitude),
-      travelMode: TravelMode.driving,
+      travelMode: travelMode == 'driving'
+          ? TravelMode.driving
+          : travelMode == 'walking'
+              ? TravelMode.walking
+              : travelMode == 'bicycling'
+                  ? TravelMode.bicycling
+                  : TravelMode.transit,
     );
 
     if (result.points.isNotEmpty) {
@@ -168,7 +175,6 @@ class _HomeScreenState extends State<HomeScreen> {
           textEditingController: TextEditingController(),
           googleAPIKey: googleApiKey,
           inputDecoration: const InputDecoration(
-
             hintText: 'Search Destination',
             border: InputBorder.none,
             contentPadding: EdgeInsets.zero,
@@ -222,12 +228,53 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-
   Future<Map<String, dynamic>> _getPlaceDetails(String placeId) async {
     final response = await http.get(Uri.parse(
-        'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeId&fields=name,formatted_address,geometry&key=RHsanV3zptLElh-iOuNYYdZdAmQ='));
+        'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeId&fields=name,formatted_address,geometry&key=$googleApiKey'));
     final json = jsonDecode(response.body);
     return json['result'] as Map<String, dynamic>;
+  }
+
+  Future<void> _showTaxiOptions() async {
+    if (_origin == null || _destination == null) return;
+
+    String url =
+        'https://maps.googleapis.com/maps/api/distancematrix/json?origins=${_origin.latitude},${_origin.longitude}&destinations=${_destination!.latitude},${_destination!.longitude}&key=$googleApiKey';
+    http.Response response = await http.get(Uri.parse(url));
+    Map values = jsonDecode(response.body);
+
+    String distanceText = values["rows"][0]["elements"][0]["distance"]["text"];
+    int distanceValue = values["rows"][0]["elements"][0]["distance"]["value"];
+    double distanceInKm = distanceValue / 1000;
+    double price = distanceInKm * 100;
+
+    showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Pick your Taxi'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Text('Distance: $distanceText'),
+            Text('Price: Ksh. ${price.toStringAsFixed(2)}'),
+            const SizedBox(height: 10),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: const Text("Select Car"),
+            ),
+          ],
+        ),
+        actions: <Widget>[
+          TextButton(
+              child: const Text('Cancel'),
+              onPressed: () {
+                Navigator.of(context).pop();
+              }),
+        ],
+      ),
+    );
   }
 
   @override
@@ -253,20 +300,48 @@ class _HomeScreenState extends State<HomeScreen> {
             left: 15,
             right: 15,
             child: _buildSearchBar(context),
-          )
-        ],
-      ),
-      floatingActionButton: Column(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          FloatingActionButton(
-            onPressed: _addPath,
-            child: const Icon(Icons.directions),
           ),
-          const SizedBox(height: 10),
-          FloatingActionButton(
-            onPressed: _showTravelTime,
-            child: const Icon(Icons.access_time),
+          Positioned(
+            top: 110,
+            left: 15,
+            child: Column(children: <Widget>[
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    travelMode = 'driving';
+                    _addPath();
+                  });
+                },
+                child: const Text('Driving'),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    travelMode = 'walking';
+                    _addPath();
+                  });
+                },
+                child: const Text("Walking"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    travelMode = 'bicycling';
+                    _addPath();
+                  });
+                },
+                child: const Text("Cycling"),
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    travelMode = 'transit';
+                    _addPath();
+                  });
+                },
+                child: const Text("Transit"),
+              ),
+            ]),
           ),
         ],
       ),

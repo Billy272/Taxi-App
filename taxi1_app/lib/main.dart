@@ -56,40 +56,88 @@ class IntroScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Container(
-              height: 100,
-              width: 100,
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 0, 50),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: const Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  FaIcon(
-                    FontAwesomeIcons.carRear,
-                    color: Colors.white,
-                    size: 50,
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    'Taxi App',
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+    return Stack(
+      children: <Widget>[
+        // Background image
+        Positioned.fill(
+          child: Image.network(
+            'https://img.freepik.com/free-vector/order-taxi-isometric-illustration-with-yellow-taxi-car-big-image-modern-smartphone-with-mobile-app-taxi-service_1284-33017.jpg',
+            fit: BoxFit.cover,
+          ),
+        ),
+        // Faded color overlay
+        Positioned.fill(
+          child: Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  const Color.fromARGB(255, 87, 117, 186).withOpacity(0.9),
+                  const Color.fromARGB(255, 87, 117, 186).withOpacity(0.4),
                 ],
+                begin: Alignment.bottomCenter,
+                end: Alignment.topCenter,
+                stops: const [0.0, 1.0],
               ),
             ),
-            const SizedBox(height: 50),
-            FloatingActionButton.extended(
+          ),
+        ),
+        // Main content
+        Scaffold(
+          backgroundColor: Colors.transparent, // Set scaffold background to transparent
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                const Text(
+                  'Welcome to',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Container(
+                  height: 100,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 0, 0, 50),
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: const Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      FaIcon(
+                        FontAwesomeIcons.carRear,
+                        color: Colors.white,
+                        size: 50,
+                      ),
+                      SizedBox(height: 10),
+                      Text(
+                        'Taxi App',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+        // Positioned login button at the bottom
+        Positioned(
+          bottom: 50,
+          left: 0,
+          right: 0,
+          child: Center(
+            child:SizedBox(
+              width: 200,
+              height: 60,
+            child: FloatingActionButton.extended(
               onPressed: () {
                 Navigator.push(
                   context,
@@ -98,15 +146,18 @@ class IntroScreen extends StatelessWidget {
               },
               icon: const Icon(Icons.login, color: Colors.white),
               backgroundColor: const Color.fromARGB(255, 0, 0, 50),
-              label:
-                  const Text('Log In', style: TextStyle(color: Colors.white)),
+              label: const Text('Log In', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,
+              fontSize: 20),
+              ),
             ),
-          ],
+          ),
         ),
-      ),
+        ),
+      ],
     );
   }
 }
+
 
 class PageNav extends StatefulWidget {
   final UserProfile userProfile;
