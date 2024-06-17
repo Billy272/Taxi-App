@@ -83,7 +83,8 @@ class IntroScreen extends StatelessWidget {
         ),
         // Main content
         Scaffold(
-          backgroundColor: Colors.transparent, // Set scaffold background to transparent
+          backgroundColor:
+              Colors.transparent, // Set scaffold background to transparent
           body: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -134,30 +135,33 @@ class IntroScreen extends StatelessWidget {
           left: 0,
           right: 0,
           child: Center(
-            child:SizedBox(
+            child: SizedBox(
               width: 200,
               height: 60,
-            child: FloatingActionButton.extended(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const Login()),
-                );
-              },
-              icon: const Icon(Icons.login, color: Colors.white),
-              backgroundColor: const Color.fromARGB(255, 0, 0, 50),
-              label: const Text('Log In', style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold,
-              fontSize: 20),
+              child: FloatingActionButton.extended(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Login()),
+                  );
+                },
+                icon: const Icon(Icons.login, color: Colors.white),
+                backgroundColor: const Color.fromARGB(255, 0, 0, 50),
+                label: const Text(
+                  'Get Your Ride Now',
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20),
+                ),
               ),
             ),
           ),
-        ),
         ),
       ],
     );
   }
 }
-
 
 class PageNav extends StatefulWidget {
   final UserProfile userProfile;

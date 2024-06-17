@@ -175,6 +175,7 @@ class _HomeScreenState extends State<HomeScreen> {
           textEditingController: TextEditingController(),
           googleAPIKey: googleApiKey,
           inputDecoration: const InputDecoration(
+            icon: Icon(Icons.search),
             hintText: 'Search Destination',
             border: InputBorder.none,
             contentPadding: EdgeInsets.zero,
