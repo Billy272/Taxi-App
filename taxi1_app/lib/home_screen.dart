@@ -315,33 +315,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
                 child: const Text('Driving'),
               ),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    travelMode = 'walking';
-                    _addPath();
-                  });
-                },
-                child: const Text("Walking"),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    travelMode = 'bicycling';
-                    _addPath();
-                  });
-                },
-                child: const Text("Cycling"),
-              ),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    travelMode = 'transit';
-                    _addPath();
-                  });
-                },
-                child: const Text("Transit"),
-              ),
             ]),
           ),
         ],
