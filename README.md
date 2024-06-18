@@ -1,6 +1,8 @@
 # Taxi App 
 ## App Screenshots
 
+Developed by Dart.
+
 <table>
   <tr>
     <td><img src="https://github.com/Billy272/Taxi-App/assets/98650586/98562a4f-0d9d-4bda-a295-226e04a82883" alt="Screenshot 1" width="250"/></td>
